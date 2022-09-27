@@ -2,7 +2,7 @@ require("dotenv").config();
 const exphbs = require("express-handlebars");
 const express = require("express");
 const helpers = require("./utils/helpers");
-// const routes = require("./controllers/homeController");
+const routes = require("./controllers/homeController");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
@@ -32,7 +32,7 @@ app.use(session(sessionSettings));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(routes);
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => console.log(`Server online at PORT: ${PORT}`));
