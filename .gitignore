@@ -1,2 +1,4 @@
-assets
-readme.md
+ignore
+node_modules
+package-lock.json
+.env
