@@ -1,1 +1,7 @@
-<div>CLICK</div>
+<ul class="post-list">
+    {{#each posts as |post|}}
+    <li>
+        {{> post-format}}
+    </li>
+    {{/each}}
+</ul>
