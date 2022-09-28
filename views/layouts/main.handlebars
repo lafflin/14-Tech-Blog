@@ -38,15 +38,17 @@
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
 						{{#if isLoggedIn}}
-							<a class="nav-link active" aria-current="page" href="/signin">
-								Sign In</a>
-							<a class="nav-link" href="/">Sign Up</a>
+							<button id="logoutButton">
+								<a class="nav-link" href="/">
+									<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i></a>
+
+							</button>
 						{{else}}
-							<button>
-								<i
-									id="logoutBtn"
-									class="fa-solid fa-arrow-right-from-bracket fa-lg"
-								></i>
+							<button id="signinButton">
+								<a class="nav-link" href="/signin">Sign In</a>
+							</button>
+							<button id="signupButton">
+								<a class="nav-link" href="/signup">Sign Up </a>
 							</button>
 						{{/if}}
 					</div>
@@ -68,5 +70,6 @@
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
 		></script>
+		<script src="/js/logout.js"></script>
 	</body>
 </html>

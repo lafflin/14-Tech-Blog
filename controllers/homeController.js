@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const apiController = require("./apiController");
+const apiController = require("./apiController");
 const sequelize = require("../config/connection");
 const { Comment, Post, User } = require("../models");
 
@@ -32,13 +32,22 @@ router.get("/", (req, res) => {
 				plain: true,
 			})
 		);
-
+		console.log(req.session.user);
 		res.render("landingPage", {
 			posts,
 			isLoggedIn: req.session.user,
 		});
 	});
 });
-// router.use("/api", apiController);
+
+router.get("/signup", (req, res) => {
+	res.render("signup");
+});
+
+router.get("/signin", (req, res) => {
+	res.render("signin");
+});
+
+router.use("/api", apiController);
 
 module.exports = router;

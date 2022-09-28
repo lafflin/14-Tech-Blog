@@ -1,14 +1,14 @@
 module.exports = [
 	{
-		username: "steve",
+		username: "steve larry",
 		password: "password1",
 	},
 	{
-		username: "larry",
+		username: "larry bob",
 		password: "password2",
 	},
 	{
-		username: "bob",
+		username: "bob steve",
 		password: "password3",
 	},
 ];
