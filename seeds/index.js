@@ -1,16 +1,18 @@
 const sequelize = require("./../config/connection");
-const { User } = require("./../models");
+const { User, Comment, Post } = require("./../models");
+const comments = require("./comment");
+const posts = require("./post");
 const users = require("./users");
 
 const seeder = async () => {
 	// wipes out the user table
 	await sequelize.sync({ force: true });
-	await User.bulkCreate(users, {
+	const createComments = await Comment.bulkCreate(comments);
+	const createPosts = await Post.bulkCreate(posts);
+	const createUser = await User.bulkCreate(users, {
 		individualHooks: true,
 	});
 	process.exit(0);
 };
 
-(async () => {
-	await seeder();
-})();
+seeder();
