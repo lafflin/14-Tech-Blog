@@ -40,12 +40,89 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.get("/signup", (req, res) => {
-	res.render("signup");
+router.get("/home", (req, res) => {
+	Post.findAll({
+		attributes: ["id", "title", "content", "createdAt"],
+		include: [
+			{
+				model: Comment,
+				attributes: [
+					"id",
+					"comment_content",
+					"user_id",
+					"post_id",
+					"createdAt",
+				],
+				include: {
+					model: User,
+					attributes: ["username"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["username"],
+			},
+		],
+	}).then((postData) => {
+		const posts = postData.map((post) =>
+			post.get({
+				plain: true,
+			})
+		);
+		console.log(req.session.user);
+		res.render("home", {
+			posts,
+			isLoggedIn: req.session.user,
+		});
+	});
 });
 
-router.get("/signin", (req, res) => {
-	res.render("signin");
+router.get("/post/:id", (req, res) => {});
+
+router.get("/post", (req, res) => {});
+
+router.get("/dash", (req, res) => {
+	Post.findAll({
+		where: {
+			user_id: req.session.id,
+		},
+		attributes: ["id", "title", "content", "createdAt"],
+		include: [
+			{
+				model: Comment,
+				attributes: [
+					"id",
+					"comment_content",
+					"user_id",
+					"post_id",
+					"createdAt",
+				],
+				include: {
+					model: User,
+					attributes: ["username"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["username"],
+			},
+		],
+	})
+		.then((postData) => {
+			const posts = postData.map((post) =>
+				post.get({
+					plain: true,
+				})
+			);
+			res.render("dash", {
+				posts,
+				isLoggedIn: req.session.user,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 router.use("/api", apiController);

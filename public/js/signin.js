@@ -29,6 +29,7 @@ loginButton.on("click", async function (event) {
 			}),
 		});
 		const user = await response.json();
+		// not sure how to only send user to home when the login is successful
 		window.location.href = "/home";
 	} catch (error) {
 		console.error(error);

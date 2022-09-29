@@ -1,1 +1,5 @@
-module.exports = {};
+module.exports = {
+	toRegularTime: (date) => {
+		return date.toLocaleDateString();
+	},
+};
