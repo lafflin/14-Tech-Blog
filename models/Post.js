@@ -8,7 +8,6 @@ Post.init(
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			allowNull: false,
 			autoIncrement: true,
 		},
 		title: {
@@ -24,7 +23,6 @@ Post.init(
 			allowNull: false,
 			validate: {
 				notNull: true,
-				len: [1],
 			},
 		},
 		user_id: {

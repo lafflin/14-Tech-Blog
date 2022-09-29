@@ -79,7 +79,9 @@ router.get("/home", (req, res) => {
 
 router.get("/post/:id", (req, res) => {});
 
-router.get("/post", (req, res) => {});
+router.get("/newPost", (req, res) => {
+	res.render("newPost");
+});
 
 router.get("/dash", (req, res) => {
 	Post.findAll({

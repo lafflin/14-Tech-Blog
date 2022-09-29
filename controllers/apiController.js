@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const { User } = require("../models");
+const { User, Post } = require("../models");
 
 router.post("/signup", async (req, res) => {
 	try {
@@ -50,6 +50,16 @@ router.post("/logout", async (req, res) => {
 		console.log("logging out");
 		req.session.destroy();
 		console.log("logged out!");
+	}
+});
+
+router.post("/newPost", async (req, res) => {
+	try {
+		console.log(req.body);
+		const newPost = await Post.create(req.body);
+		res.json(newPost);
+	} catch (error) {
+		res.status(500).json({ error });
 	}
 });
 
