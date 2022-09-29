@@ -27,6 +27,7 @@ router.get("/", (req, res) => {
 			},
 		],
 	}).then((postData) => {
+		console.log(postData);
 		const posts = postData.map((post) =>
 			post.get({
 				plain: true,
@@ -86,7 +87,7 @@ router.get("/newPost", (req, res) => {
 router.get("/dash", (req, res) => {
 	Post.findAll({
 		where: {
-			user_id: req.session.id,
+			user_id: req.session.user.id,
 		},
 		attributes: ["id", "title", "content", "createdAt"],
 		include: [

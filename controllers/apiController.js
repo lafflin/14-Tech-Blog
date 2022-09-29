@@ -55,8 +55,12 @@ router.post("/logout", async (req, res) => {
 
 router.post("/newPost", async (req, res) => {
 	try {
-		console.log(req.body);
-		const newPost = await Post.create(req.body);
+		const newPost = await Post.create({
+			title: req.body.title,
+			content: req.body.content,
+			user_id: req.session.user.id,
+		});
+		console.log(newPost);
 		res.json(newPost);
 	} catch (error) {
 		res.status(500).json({ error });

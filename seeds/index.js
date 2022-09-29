@@ -7,11 +7,11 @@ const users = require("./users");
 const seeder = async () => {
 	// wipes out the user table
 	await sequelize.sync({ force: true });
-	const createComments = await Comment.bulkCreate(comments);
-	const createPosts = await Post.bulkCreate(posts);
 	const createUser = await User.bulkCreate(users, {
 		individualHooks: true,
 	});
+	const createPosts = await Post.bulkCreate(posts);
+	const createComments = await Comment.bulkCreate(comments);
 	process.exit(0);
 };
 
