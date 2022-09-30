@@ -4,22 +4,23 @@
 			<h2 class="post-name">
 				{{title}}
 			</h2>
+			<div id="postId">{{id}}</div>
 			<div class="createdBy">
 				<p>OP: {{user.username}} on {{toRegularTime createdAt}} </p>
 			</div>
 			<div class="content">{{content}}</div>
 			<br />
-			<button><a href="/submitComment"><i
-						class="fa-regular fa-comment-dots"
-					></i></a></button>
+			<button id="addComment"><i
+					class="fa-regular fa-comment-dots"
+				></i></button>
 		</div>
 	</card>
 {{/with}}
 
+<h4><u>Comments:</u></h4>
 {{#if posts.comments}}
 	{{#each posts.comments}}
 		<card class="comments">
-			<h4><u>Comments:</u></h4>
 			<br />
 			<div class="content">
 				<h6> {{comment_content}}</h6>
@@ -29,3 +30,16 @@
 		</card>
 	{{/each}}
 {{/if}}
+<br />
+
+<form id="commentForm">
+	<label for="content">What would you like to comment?</label>
+	<br />
+	<input type="text" id="commentInput" />
+	<button id="submitButton">Submit</button>
+</form>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+></script>
+<script src="/js/comment.js"></script>

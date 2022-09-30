@@ -3,7 +3,7 @@ let logoutButton = $("#logoutButton");
 logoutButton.on("click", async function (event) {
 	event.preventDefault();
 	try {
-		await fetch("api/logout", {
+		await fetch("/api/logout", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

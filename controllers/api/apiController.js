@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../../models");
 
 router.post("/signup", async (req, res) => {
 	try {
@@ -73,6 +73,7 @@ router.post("/submitComment", async (req, res) => {
 		const newComment = await Comment.create({
 			comment_content: req.body.comment_content,
 			user_id: req.session.user.id,
+			post_id: req.body.post_id,
 		});
 		console.log(newComment);
 		res.json(newComment);

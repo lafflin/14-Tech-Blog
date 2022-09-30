@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const apiController = require("./apiController");
+const apiController = require("./api/apiController");
 const sequelize = require("../config/connection");
 const { Comment, Post, User } = require("../models");
 
@@ -27,7 +27,6 @@ router.get("/", (req, res) => {
 			},
 		],
 	}).then((postData) => {
-		console.log(postData);
 		const posts = postData.map((post) =>
 			post.get({
 				plain: true,
@@ -170,5 +169,4 @@ router.get("/submitComment", (req, res) => {
 });
 
 router.use("/api", apiController);
-
 module.exports = router;
