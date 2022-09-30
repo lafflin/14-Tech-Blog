@@ -8,11 +8,24 @@
 				<p>OP: {{user.username}} on {{toRegularTime createdAt}} </p>
 			</div>
 			<div class="content">{{content}}</div>
+			<br />
+			<button><a href="/submitComment"><i
+						class="fa-regular fa-comment-dots"
+					></i></a></button>
 		</div>
 	</card>
-
-	<card class="comments">
-		<div class="commenter">{{comments.user_id}} </div>
-		<div class="content">{{comments.comment_content}}</div>
-	</card>
 {{/with}}
+
+{{#if posts.comments}}
+	{{#each posts.comments}}
+		<card class="comments">
+			<h4><u>Comments:</u></h4>
+			<br />
+			<div class="content">
+				<h6> {{comment_content}}</h6>
+				<div>
+					{{toRegularTime createdAt}}</div>
+			</div>
+		</card>
+	{{/each}}
+{{/if}}

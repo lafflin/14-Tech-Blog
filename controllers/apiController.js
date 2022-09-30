@@ -67,4 +67,17 @@ router.post("/newPost", async (req, res) => {
 	}
 });
 
+router.post("/submitComment", async (req, res) => {
+	try {
+		console.log(req.body);
+		const newComment = await Comment.create({
+			comment_content: req.body.comment_content,
+			user_id: req.session.user.id,
+		});
+		console.log(newComment);
+		res.json(newComment);
+	} catch (error) {
+		res.status(500).json({ error });
+	}
+});
 module.exports = router;

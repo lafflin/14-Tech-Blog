@@ -94,7 +94,7 @@ router.get("/post/:id", async (req, res) => {
 				},
 				{
 					model: User,
-					attributes: ["username"],
+					attributes: ["id", "username"],
 				},
 			],
 		});
@@ -155,6 +155,18 @@ router.get("/dash", (req, res) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
+});
+
+router.get("/signin", (req, res) => {
+	res.render("signin");
+});
+
+router.get("/signup", (req, res) => {
+	res.render("signup");
+});
+
+router.get("/submitComment", (req, res) => {
+	res.render("submitComment");
 });
 
 router.use("/api", apiController);
