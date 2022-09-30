@@ -1,0 +1,18 @@
+{{#with posts}}
+	<card class="post">
+		<div class="border">
+			<h2 class="post-name">
+				{{title}}
+			</h2>
+			<div class="createdBy">
+				<p>OP: {{user.username}} on {{toRegularTime createdAt}} </p>
+			</div>
+			<div class="content">{{content}}</div>
+		</div>
+	</card>
+
+	<card class="comments">
+		<div class="commenter">{{comments.user_id}} </div>
+		<div class="content">{{comments.comment_content}}</div>
+	</card>
+{{/with}}

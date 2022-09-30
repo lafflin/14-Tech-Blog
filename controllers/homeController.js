@@ -70,7 +70,7 @@ router.get("/home", (req, res) => {
 				plain: true,
 			})
 		);
-		console.log(req.session.user);
+		console.log(posts);
 		res.render("home", {
 			posts,
 			isLoggedIn: req.session.user,
@@ -78,7 +78,36 @@ router.get("/home", (req, res) => {
 	});
 });
 
-router.get("/post/:id", (req, res) => {});
+router.get("/post/:id", async (req, res) => {
+	try {
+		const postData = await Post.findByPk(req.params.id, {
+			include: [
+				{
+					model: Comment,
+					attributes: [
+						"id",
+						"comment_content",
+						"user_id",
+						"post_id",
+						"createdAt",
+					],
+				},
+				{
+					model: User,
+					attributes: ["username"],
+				},
+			],
+		});
+		const posts = postData.get({ plain: true });
+		console.log(posts);
+		res.render("viewPost", {
+			posts,
+			isLoggedIn: req.session.user,
+		});
+	} catch (error) {
+		res.status(500).json({ error });
+	}
+});
 
 router.get("/newPost", (req, res) => {
 	res.render("newPost");
