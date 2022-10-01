@@ -81,4 +81,19 @@ router.post("/submitComment", async (req, res) => {
 		res.status(500).json({ error });
 	}
 });
+
+router.put("/updatePost", async (req, res) => {});
+router.delete("/deletePost", async (req, res) => {
+	try {
+		console.log(req.body);
+		const deletePost = await Post.destroy({
+			where: { id: req.body.post_id },
+		});
+		console.log(deletePost);
+		console.log(deletePost);
+		res.json(deletePost);
+	} catch (error) {
+		res.status(500).json({ error });
+	}
+});
 module.exports = router;

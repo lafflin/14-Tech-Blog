@@ -44,14 +44,38 @@ submitComment.on("click", async function (event) {
 		console.error(error);
 	}
 });
-function editAndDelete() {
-	if (req.session.user.id === postId.text()) {
-		editButton.show();
-		deleteButton.show();
-	}
-}
-editAndDelete();
+// function editAndDelete() {
+// 	if (session.user.id === postId.text()) {
+// 		editButton.show();
+// 		deleteButton.show();
+// 	}
+// }
+// editAndDelete();
 
 editButton.on("click", function () {
 	// console.log(req.session.user.id);
+});
+
+deleteButton.on("click", async function () {
+	const post_id = postId.text();
+
+	if (confirm("Are you sure you would like to delete this post?")) {
+		try {
+			const response = await fetch("/api/deletePost", {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					post_id,
+				}),
+			});
+			const deletedPost = await response.json();
+			window.location.href = "/dash";
+		} catch (error) {
+			console.error(error);
+		}
+	} else {
+		console.log("User decided not to delete post");
+	}
 });
