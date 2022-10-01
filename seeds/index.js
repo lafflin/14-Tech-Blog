@@ -15,4 +15,6 @@ const seeder = async () => {
 	process.exit(0);
 };
 
-seeder();
+(async () => {
+	await seeder();
+})();
