@@ -3,9 +3,15 @@ let submitComment = $("#submitButton");
 let commentForm = $("#commentForm");
 let postId = $("#postId");
 let addComment = $("#addComment");
+let OPId = $("#OPId");
+let editButton = $("#editButton");
+let deleteButton = $("#deleteButton");
 
 postId.hide();
+OPId.hide();
 commentForm.hide();
+// editButton.hide();
+// deleteButton.hide();
 
 addComment.on("click", function () {
 	commentForm.show();
@@ -33,8 +39,19 @@ submitComment.on("click", async function (event) {
 			}),
 		});
 		const newComment = await response.json();
-		// window.location.href = "/home";
+		window.location.href = "/home";
 	} catch (error) {
 		console.error(error);
 	}
+});
+function editAndDelete() {
+	if (req.session.user.id === postId.text()) {
+		editButton.show();
+		deleteButton.show();
+	}
+}
+editAndDelete();
+
+editButton.on("click", function () {
+	// console.log(req.session.user.id);
 });

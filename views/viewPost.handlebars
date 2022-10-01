@@ -5,6 +5,7 @@
 				{{title}}
 			</h2>
 			<div id="postId">{{id}}</div>
+			<div id="OPId">{{user.id}}</div>
 			<div class="createdBy">
 				<p>OP: {{user.username}} on {{toRegularTime createdAt}} </p>
 			</div>
@@ -16,6 +17,9 @@
 		</div>
 	</card>
 {{/with}}
+
+<button id="editButton">Edit</button>
+<button id="deleteButton">Delete</button>
 
 <h4><u>Comments:</u></h4>
 {{#if posts.comments}}
