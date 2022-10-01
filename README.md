@@ -79,7 +79,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ### Links
 
 - Solution URL: [Solution](https://github.com/lafflin/14-Tech-Blog)
-- Heroku: [Heroku]()
+- Heroku: [Heroku](https://web-dev-blog-hw14.herokuapp.com/)
   ​
 
 ## My process
@@ -97,6 +97,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 - Express.js
 - MySql
 - mysql2, Sequelize, dotenv, express-session, handlebars
+- Heroku
 
 ### What I learned
 
