@@ -3,15 +3,15 @@ let submitComment = $("#submitButton");
 let commentForm = $("#commentForm");
 let postId = $("#postId");
 let addComment = $("#addComment");
-let OPId = $("#OPId");
 let editButton = $("#editButton");
 let deleteButton = $("#deleteButton");
+let updateForm = $("#updateForm");
+let updateContent = $("#updateContent");
+let submitEditButton = $("#submitEditButton");
 
 postId.hide();
-OPId.hide();
 commentForm.hide();
-// editButton.hide();
-// deleteButton.hide();
+updateForm.hide();
 
 addComment.on("click", function () {
 	commentForm.show();
@@ -44,16 +44,36 @@ submitComment.on("click", async function (event) {
 		console.error(error);
 	}
 });
-// function editAndDelete() {
-// 	if (session.user.id === postId.text()) {
-// 		editButton.show();
-// 		deleteButton.show();
-// 	}
-// }
-// editAndDelete();
 
 editButton.on("click", function () {
-	// console.log(req.session.user.id);
+	updateForm.show();
+});
+
+submitEditButton.on("click", async function (event) {
+	event.preventDefault();
+	const content = updateContent.val();
+	const post_id = postId.text();
+	console.log(content);
+	if (content.trim().length === 0) {
+		alert("Please enter something into the content box");
+	}
+
+	try {
+		const response = await fetch("/api/updatePost", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				content,
+				post_id,
+			}),
+		});
+		const deletedPost = await response.json();
+		// window.location.href = "/dash";
+	} catch (error) {
+		console.error(error);
+	}
 });
 
 deleteButton.on("click", async function () {

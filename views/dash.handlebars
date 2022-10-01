@@ -1,9 +1,9 @@
 {{#if posts}}
 
-<ul id= "postList" class="post-list">
+<ul id= "dashPostList" class="post-list">
     {{#each posts as |post|}}
     <li>
-        {{> post-format}}
+        {{> dash-posts}}
     </li>
     {{/each}}
 </ul>

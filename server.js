@@ -29,10 +29,6 @@ app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
 app.use(session(sessionSettings));
-app.use(function (req, res, next) {
-	res.session = req.session;
-	next();
-});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

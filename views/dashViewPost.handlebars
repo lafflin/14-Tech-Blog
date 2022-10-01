@@ -18,6 +18,15 @@
 	</card>
 {{/with}}
 
+<button id="editButton">Edit</button>
+<button id="deleteButton">Delete</button>
+
+<form id="updateForm">
+	<label for="updateContent">New Content:</label>
+	<input id="updateContent" type="text" />
+	<button id="submitEditButton">Submit</button>
+</form>
+
 <h4><u>Comments:</u></h4>
 {{#if posts.comments}}
 	{{#each posts.comments}}

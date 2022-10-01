@@ -82,14 +82,30 @@ router.post("/submitComment", async (req, res) => {
 	}
 });
 
-router.put("/updatePost", async (req, res) => {});
+router.put("/updatePost", async (req, res) => {
+	try {
+		console.log(req.body);
+		const updatePost = await Post.update(
+			{
+				content: req.body.content,
+			},
+			{
+				where: { id: req.body.post_id },
+			}
+		);
+		console.log(updatePost);
+		res.json(updatePost);
+	} catch (error) {
+		res.status(500).json({ error });
+	}
+});
+
 router.delete("/deletePost", async (req, res) => {
 	try {
 		console.log(req.body);
 		const deletePost = await Post.destroy({
 			where: { id: req.body.post_id },
 		});
-		console.log(deletePost);
 		console.log(deletePost);
 		res.json(deletePost);
 	} catch (error) {

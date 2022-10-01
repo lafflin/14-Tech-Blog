@@ -105,6 +105,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ### Continued development
 
 - More work with sequelize and handlebars
+- Specifically I realized near the very end that my routing needed some more separation for cleanliness sake, but as I was already at the end I opted to leave it for now
 
 ### Useful resources
 

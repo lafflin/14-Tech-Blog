@@ -108,6 +108,37 @@ router.get("/post/:id", async (req, res) => {
 	}
 });
 
+router.get("/dash/post/:id", async (req, res) => {
+	try {
+		const postData = await Post.findByPk(req.params.id, {
+			include: [
+				{
+					model: Comment,
+					attributes: [
+						"id",
+						"comment_content",
+						"user_id",
+						"post_id",
+						"createdAt",
+					],
+				},
+				{
+					model: User,
+					attributes: ["id", "username"],
+				},
+			],
+		});
+		const posts = postData.get({ plain: true });
+		console.log(posts);
+		res.render("dashViewPost", {
+			posts,
+			isLoggedIn: req.session.user,
+		});
+	} catch (error) {
+		res.status(500).json({ error });
+	}
+});
+
 router.get("/newPost", (req, res) => {
 	res.render("newPost");
 });
